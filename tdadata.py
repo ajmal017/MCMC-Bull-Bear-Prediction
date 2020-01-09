@@ -1,19 +1,20 @@
 import requests
 from config import client_id
 
-endpoint = r"https://api.tdameritrade.com/v1/marketdata/{}/pricehistory".format('GOOG')
+if __name__ == '__main__':
+	endpoint = r"https://api.tdameritrade.com/v1/marketdata/{}/pricehistory".format('DG')
 
-payload = { 'apikey':client_id,
-			'periodType': 'day',
-			'frequencyType':'minute',
-			'frequency':'1',
-			'period':'2',
-			'endDate':'1556158524000',
-			'startDate': '1554535854000',
-			'needExtendedHoursData':'true'}
+	payload = { 'apikey':client_id,
+				'periodType': 'day',
+				'period': '2',
+				'frequencyType':'minute',
+				'frequency':'1',
+				'period':'2'
+				}
 
-content = requests.get(url = endpoint , params = payload)
+	content = requests.get(url = endpoint , params = payload)
+	
 
-data = content.json()
-
-print(data)
+	data = content.json()
+	
+	print(data)
