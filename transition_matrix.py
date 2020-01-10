@@ -1,19 +1,19 @@
 import numpy as np 
 from scipy import linalg
-from tdadata import Hist_Data
+from tdadata import Hist_Data,Mkt_Direction_Today
 
-def Prob_In_x_Days(Bull_Bear,x,Transition_Matrix):
+def Prob_In_x_Days(Mkt_Direction_Today,x,Transition_Matrix):
 
 	A = np.linalg.matrix_power(Transition_Matrix,x)
 	
-	if Bull_Bear>-0.4 and Bull_Bear<0.4: 
-		Mkt_Direction_Today=np.mat([0,1,0])
-	elif Bull_Bear>0.4:
-		Mkt_Direction_Today=np.mat([1,0,0])
-	elif Bull_Bear<-0.4:
-		Mkt_Direction_Today=np.mat([0,0,1])
+	if Mkt_Direction_Today>-0.4 and Mkt_Direction_Today<0.4: 
+		mkt_dir=np.mat([0,1,0])
+	elif Mkt_Direction_Today>0.4:
+		mkt_dir=np.mat([1,0,0])
+	elif Mkt_Direction_Today<-0.4:
+		mkt_dir=np.mat([0,0,1])
 	
-	return np.dot(Mkt_Direction_Today,A)
+	return np.dot(mkt_dir,A)
 
 def Transition_Matrix(close,months):
 	p = []
@@ -62,6 +62,5 @@ def Transition_Matrix(close,months):
 if __name__ == '__main__':
 	close = Hist_Data(3)
 	Transition_Matrix= Transition_Matrix(close,3)
-
-	p = Prob_In_x_Days(0.33,3,Transition_Matrix)
+	p = Prob_In_x_Days(Mkt_Direction_Today(),3,Transition_Matrix)
 	print(p)
