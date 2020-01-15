@@ -3,10 +3,13 @@ from scipy import linalg
 from tdadata import Hist_Data,Mkt_Direction_Today
 
 def Transition_Matrix(close,months):
+	
+	#creates list of % change values
 	p = []
 	for i in range(len(close)-1):
 		p.append(( (close[i+1]-close[i])/close[i])*100)
 
+	#creates the transition matrix 
 	tm = [[0,0,0],[0,0,0],[0,0,0]]
 	bull_count=float(0)
 	stagnant_count=float(0)

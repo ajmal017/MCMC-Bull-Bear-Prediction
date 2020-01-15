@@ -4,6 +4,7 @@ from tdadata import Hist_Data,Mkt_Direction_Today
 from transition_matrix import Transition_Matrix
 import random
 
+
 def Prob_In_x_Days(Mkt_Direction_Today,x,Transition_Matrix):
 
 	A = np.linalg.matrix_power(Transition_Matrix,x)
